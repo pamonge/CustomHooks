@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useForm } from '../hooks/useForm'
 
 export const FormsApp = () => {
@@ -16,6 +16,12 @@ export const FormsApp = () => {
     console.log(username, email, password)
   }
 
+  const focusRef = useRef()
+
+  useEffect(() => {
+    focusRef.current.focus()
+  }, [])
+
   return (
     <>
       <form onSubmit={handleSubmit} >
@@ -32,6 +38,7 @@ export const FormsApp = () => {
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
           <input 
+            ref={focusRef}
             type="email" 
             className="form-control" 
             id="email" 
